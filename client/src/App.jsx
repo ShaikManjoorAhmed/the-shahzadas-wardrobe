@@ -11,6 +11,9 @@ import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import Dashboard from "./pages/admin/Dashboard";
+import AdminLayout from "./components/layout/AdminSidebar";
+import ManageProducts from "./pages/admin/ManageProducts";
+import ManageOrders from "./pages/admin/ManageOrders";
 
 import { ProtectedRoute, AdminRoute } from "./routes/ProtectedRoute";
 
@@ -30,8 +33,19 @@ function App() {
           <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
           <Route path="/my-orders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
-
-          <Route path="/admin/dashboard" element={<AdminRoute><Dashboard /></AdminRoute>} />
+           <Route
+  path="/admin"
+  element={
+    <AdminRoute>
+      <AdminLayout />
+    </AdminRoute>
+  }
+>
+  <Route path="dashboard" element={<Dashboard />} />
+  <Route path="products" element={<ManageProducts />} />
+  <Route path="orders" element={<ManageOrders />} />
+</Route>
+          
         </Routes>
       </main>
 
