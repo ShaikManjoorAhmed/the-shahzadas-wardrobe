@@ -11,10 +11,11 @@ import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import Dashboard from "./pages/admin/Dashboard";
-import AdminLayout from "./components/layout/AdminSidebar";
 import ManageProducts from "./pages/admin/ManageProducts";
 import ManageOrders from "./pages/admin/ManageOrders";
+import NotFound from "./pages/NotFound/NotFound";
 
+import AdminLayout from "./components/layout/AdminSidebar";
 import { ProtectedRoute, AdminRoute } from "./routes/ProtectedRoute";
 
 function App() {
@@ -33,19 +34,21 @@ function App() {
           <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
           <Route path="/my-orders" element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
-           <Route
-  path="/admin"
-  element={
-    <AdminRoute>
-      <AdminLayout />
-    </AdminRoute>
-  }
->
-  <Route path="dashboard" element={<Dashboard />} />
-  <Route path="products" element={<ManageProducts />} />
-  <Route path="orders" element={<ManageOrders />} />
-</Route>
-          
+
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products" element={<ManageProducts />} />
+            <Route path="orders" element={<ManageOrders />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 

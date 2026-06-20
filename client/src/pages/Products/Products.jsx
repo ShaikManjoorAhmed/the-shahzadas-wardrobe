@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import ProductCard from "../../components/products/ProductCard";
+import { useSearchParams } from "react-router-dom";
+
 const CATEGORIES = ["Kurta", "Sherwani", "Pathani Suit", "Waistcoat"];
 
 const Products = () => {
@@ -9,8 +11,8 @@ const Products = () => {
   const [error, setError] = useState("");
 
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [minPrice, setMinPrice] = useState("");
+const [searchParams] = useSearchParams();
+const [category, setCategory] = useState(searchParams.get("category") || "");  const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
